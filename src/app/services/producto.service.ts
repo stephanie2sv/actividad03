@@ -49,39 +49,32 @@ async getDataForm(filter: IFilter): Promise<Iproducto[]> {
   if (this.arrProductos.length === 0) {
     await this.getAllProductos();
   }
-console.log('Filtro recibido: ',filter);
-  let productosFiltrados = [...this.arrProductos];  // Se toma una copia de los productos originales
-console.log('productos antes: ',productosFiltrados);
-console.log('Categorías de productos:', productosFiltrados.map(p => p.category));
-  if (!filter) {
-    return productosFiltrados; // Si no hay filtro, devolvemos todos los productos
-  }
 
-  if (filter.name&&filter.name.trim() !=='') {
-    const filterName = filter.name.toLowerCase();
+  let productosFiltrados = [...this.arrProductos];  
+
+  if (filter.name && filter.name.trim() !== '') {
+    const filterName = filter.name.toLowerCase().trim();  
     productosFiltrados = productosFiltrados.filter(producto =>
       producto.name.toLowerCase().includes(filterName)
     );
-    console.log('Productos después de filtro de categoría:', productosFiltrados);
   }
 
-  if (filter.price !== undefined) {
+  if (filter.price && String(filter.price) !== '' ) {
     const filterPrice = filter.price;
     productosFiltrados = productosFiltrados.filter(producto => producto.price <= filterPrice);
-    console.log('Productos después de filtro de categoría:', productosFiltrados);
   }
 
-  if (filter.category && filter.category.trim() !=='') {
-    productosFiltrados = productosFiltrados.filter(producto => producto.category === filter.category);
-    console.log('Productos después de filtro de categoría:', productosFiltrados);
+  if (filter.category && filter.category.trim() !== '') {
+    const filterCategory = filter.category.toLowerCase().trim();
+    productosFiltrados = productosFiltrados.filter(producto =>
+      producto.category.toLowerCase() === filterCategory
+    );
   }
 
-  if (filter.active !== undefined) {
+  if (filter.active && String(filter.active) !== '') {
     productosFiltrados = productosFiltrados.filter(producto => producto.active === filter.active);
-    console.log('Productos después de filtro de categoría:', productosFiltrados);
   }
 
-  console.log('Productos después de aplicar filtros:', productosFiltrados);
   return productosFiltrados;
 }
 
