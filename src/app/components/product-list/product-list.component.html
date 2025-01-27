@@ -1,0 +1,23 @@
+<section class="container mt-3">
+    <h2>Mis productos</h2>
+    <hr>
+  
+    <div class="mt-3">
+      <app-form-template (filtroAplicado)="onFilterApplied($event)"></app-form-template>
+    </div>
+  
+    <table class="table">
+      <tbody>
+        @for(producto of productosFiltrados; track producto.id) {
+          <app-product-card [prod]="producto">="producto"></app-product-card>
+        }
+        @empty {
+          <tr>
+            <td colspan="4">No hay productos</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+  
+  </section>

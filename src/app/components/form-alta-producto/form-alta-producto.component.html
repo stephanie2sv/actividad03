@@ -1,0 +1,60 @@
+<form [formGroup]="modelForm" (ngSubmit)="addProduct()" class="card p-3 shadow">
+    <div class="my-2">
+        <label for="name" class="form-label">Nombre</label>
+        <input type="text" class="form-control mb-1" placeholder="Introduce un nombre" id="name" formControlName="name">
+        @if(checkControl('name', 'required')){
+            <p class="error">Campo requerido</p>
+        }
+        @if(checkControl('name', 'minlength')){
+            <p class="error">El nombre debe de tener al menos 3 caracteres</p>
+        }
+    </div>
+    <div class="my-2">
+        <label for="description" class="form-label">Descripcion:</label>
+        <input type="text" class="form-control mb-1" placeholder="Introduce descripcion" id="description" formControlName="description">
+        @if(checkControl('description', 'required')){
+            <p class="error">Campo requerido</p>
+        }
+    </div>
+    <div class="my-2">
+        <label for="price" class="form-label">Precio:</label>
+        <input type="number" class="form-control mb-1" id="price" formControlName="price">
+        @if(checkControl('price', 'required')){
+            <p class="error">Campo requerido</p>
+        }
+        @if(checkControl('price', 'min')){
+            <p class="error">Formato incorrecto para precio</p>
+        }
+    </div>
+    <div class="row mb-3">
+        <label for="category" class="col-sm-2 col-form-label">Categoria:</label>
+        <div class="col-sm-10">
+            <select class="form-select" aria-label="Default select example"formControlname="category" ngModel>
+                <option value="">Todas</option>
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+                <option value="niño">Niño</option>
+              </select>
+        </div>
+        @if(checkControl('category', 'required')){
+            <p class="error">Campo requerido</p>
+        }
+    </div>
+    <div class="my-2">
+        <label for="image" class="form-label">Imagen url:</label>
+        <input type="text" class="form-control mb-1" placeholder="http:...." id="image" formControlName="image">
+        @if(checkControl('image', 'required')){
+            <p class="error">Campo requerido</p>
+        }
+        @if(checkControl('image', 'pattern')){
+            <p class="error">Tiene que ser una url</p>
+        }
+    </div>
+    <div class="my-2">
+        <label for="active" class="form-label">Activo:
+            <input type="checkbox" class="form-control mb-1" id="active" formControlName="active">
+        </label>
+        
+    </div>
+    <input type="submit" value="Enviar" class="btn btn-secondary" [disabled]="!modelForm.valid">
+</form>

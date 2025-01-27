@@ -1,0 +1,43 @@
+<form #miFormulario = "ngForm" (ngSubmit)="getDataForm(miFormulario)">
+    <div class="row mb-3">
+      <label for="name" class="col-sm-2 col-form-label">Nombre:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="name" name="name" ngModel>
+      </div>
+    </div>
+    <div class="row mb-3">
+        <label for="category" class="col-sm-2 col-form-label">Categoria:</label>
+        <div class="col-sm-10">
+            <select class="form-select" aria-label="Default select example" name="category" ngModel>
+                <option value="">Todas</option>
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+                <option value="niño">Niño</option>
+              </select>
+        </div>
+      </div>
+    <div class="row mb-3">
+      <label for="price" class="col-sm-2 col-form-label">Precio</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" id="price" name="price" ngModel>
+      </div>
+    </div>
+    <fieldset class="row mb-3">
+      <legend class="col-form-label col-sm-2 pt-0">Activo:</legend>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="active" id="active1" value="true" ngModel>
+          <label class="form-check-label" for="active1">
+            Activo
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="active" id="active2" value="false" ngModel>
+          <label class="form-check-label" for="active2">
+            No activo
+          </label>
+        </div>
+    </div>
+    </fieldset>
+    <input type="submit" value="Enviar" class="btn btn-danger mt-3">
+</form>
